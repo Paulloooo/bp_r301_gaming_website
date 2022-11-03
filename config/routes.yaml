@@ -7,10 +7,17 @@ website_index:
     controller : App\Controller\WebsiteController::index
 
 user_login:
-    path: /login
-    controller: App\Controller\AuthController::index
+    path: /index.php/login
+    controller: App\Controller\AuthController::login
 
+user_logout:
+    path: /index.php/logout
+    controller: App\Controller\AuthController::logout
 
 user_register:
-    path: /register
+    path: /index.php/register
     controller: App\Controller\UserController::register
+
+posts:
+    path: /index.php/posts
+    controller: App\Controller\PostsController::showPosts
