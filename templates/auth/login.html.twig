@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in to website !{% endblock %}
+
+{% block body %}
+
+    <h1>Sign in enter website</h1>
+    <div class ="login-form">
+        <form method="post">
+            <div class="div_email">
+                <label for="inputEmail">Email</label>
+                <input type="email" name="email" id="inputEmail">
+            </div>
+            <div class="div_passwd">
+                <label for="inputPassword">Password</label>
+                <input type="password" name="password" id="inputPassword">
+            </div>
+            <div class="div_button">
+                <button type="submit" name="valdate" id="inputLogin">Sign in</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
