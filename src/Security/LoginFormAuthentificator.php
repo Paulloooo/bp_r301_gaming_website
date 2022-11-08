@@ -4,6 +4,7 @@ namespace App\Security;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use DrupalCodeGenerator\Command\Service\Custom;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -50,7 +51,9 @@ class LoginFormAuthentificator extends AbstractAuthenticator
                 }
                 return $user;
             }),
-            new PasswordCredentials($password)
+            new CustomCredentials(function($credentials, User $user) {
+                return $credentials === $user->getPassword();
+            }, $password)
         );
 
     }

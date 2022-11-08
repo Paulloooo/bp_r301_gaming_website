@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block title %}Gaming website{% endblock %}
+
+{% block body %}
+    <link href="{{ asset('style.css') }}" rel="stylesheet"/>
+    <header>
+        {% if is_granted('ROLE_USER') %}
+            <a href="{{ path('app_logout') }}">Log out</a>
+        {% else %}
+            <a href="{{ path('app_login') }}">Log in</a>
+        {% endif %}
+        <a href ={{ path('app_website') }}> <div class = "title">
+                <h1>Random gaming website</h1>
+                <img id="logo" src="{{ asset('gaming.png') }}" alt="Gaming!"/>
+            </div></a>
+        <nav class="navbar">
+            <ul>
+                <li>Announcements</li>
+                <li><a href = {{ path('app_show') }}>Posts</a></li>
+                <li>Videos</li>
+                <li>Contact</li>
+            </ul>
+        </nav>
+    </header>
+    <footer>
+        <h2>Register</h2>
+        <form method="post" class="register-user">
+            <label>
+                <input type="text" name="mail" value="mail">
+            </label>
+            <label>
+                <input type="text" name="username" value="username">
+            </label>
+            <label>
+                <input type="password" name="password" value="password">
+            </label>
+            <button type="submit" name="Publish" id="publication">Create an account !</button>
+        </form>
+
+    </footer>
+{% endblock %}

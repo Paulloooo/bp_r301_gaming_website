@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gaming website{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" href="{{ asset('style.css') }}">
+    <link rel="stylesheet" href={{ asset('bootstrap.css') }}>
+    <header>
+        {% if is_granted('ROLE_USER') %}
+            <a href="{{ path('app_logout') }}">Log out</a>
+        {% else %}
+            <a href="{{ path('app_login') }}">Log in</a>
+        {% endif %}
+        <a href ={{ path('app_website') }}> <div class = "title">
+                <h1>Random gaming website</h1>
+                <img id="logo" src="{{ asset('gaming.png') }}" alt="Gaming!"/>
+            </div></a>
+        <nav class="navbar">
+            <ul>
+                <li>Announcements</li>
+                <li><a href = {{ path('app_show') }}>Posts</a></li>
+                <li><a href = {{ path('app_video') }}>Videos</a></li>
+                <li>Contact</li>
+            </ul>
+        </nav>
+    </header>
+    <footer>
+        <h2>Posts</h2>
+        <div class= "container">
+
+        {% for art in article %}
+                <div class = "row mt-4">
+                    <div class="col">
+                        <article>
+                            <h3><a href="{{ path('app_show_content', {"id" : art.id}) }}">{{ art.title }}</a></h3>
+                            {{ art.author }}
+                        </article>
+                    </div>
+                    <div class="col">
+                        {% if art.media != null %}
+                            <img src="{{ art.media }}">
+                        {% endif %}
+                    </div>
+                </div>
+        {% endfor %}
+            {% if is_granted('ROLE_USER') %}
+                    <a href="{{ path('app_create') }}">Create a post !</a>
+            {% else %}
+                    <a href="{{ path('app_login') }}">Create a post !</a>
+            {% endif %}
+    </footer>
+{% endblock %}

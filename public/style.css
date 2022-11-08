@@ -37,6 +37,28 @@ header h1{
 }
 
 
+.create_article{
+    text-align: center;
+    display: flex;
+    flex-direction: column ;
+    justify-content: space-around;
+}
+
+.create_article>*{
+    width:100px;
+}
+
+
+.disp_video{
+    display:flex;
+    flex-direction: column;
+}
+
+img{
+    width:50%;
+}
+
+
 body{
     background-color:#BAB5B4
 }

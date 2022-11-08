@@ -3,9 +3,11 @@
 {% block title %}Log in to website !{% endblock %}
 
 {% block body %}
+    <link rel="stylesheet" href={{ asset('bootstrap.css') }}>
+    <link rel="stylesheet" href={{ asset ('style.css') }}>
 
     <h1>Sign in enter website</h1>
-    <div class ="login-form">
+    <div class ="container">
         <form method="post">
             {% if error is defined%}
             {% if error %}
@@ -22,8 +24,9 @@
                 <input type="password" name="password" id="inputPassword">
             </div>
             <div class="div_button">
-                <button type="submit" name="valdate" id="inputLogin">Sign in</button>
+                <button type="submit" name="validate" id="inputLogin">Sign in</button>
             </div>
         </form>
+        Don't have an account ? <a href="{{ path('app_register') }}"> Create it !</a>
     </div>
 {% endblock %}

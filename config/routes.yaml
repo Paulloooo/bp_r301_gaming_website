@@ -17,7 +17,3 @@ user_logout:
 user_register:
     path: /index.php/register
     controller: App\Controller\UserController::register
-
-posts:
-    path: /index.php/posts
-    controller: App\Controller\PostsController::showPosts
