@@ -3,50 +3,56 @@
 {% block title %}Gaming website{% endblock %}
 
 {% block body %}
-    <link rel="stylesheet" href="{{ asset('style.css') }}">
-    <link rel="stylesheet" href={{ asset('bootstrap.css') }}>
-    <header>
-        {% if is_granted('ROLE_USER') %}
-            <a href="{{ path('app_logout') }}">Log out</a>
-        {% else %}
-            <a href="{{ path('app_login') }}">Log in</a>
-        {% endif %}
-        <a href ={{ path('app_website') }}> <div class = "title">
-                <h1>Random gaming website</h1>
-                <img id="logo" src="{{ asset('gaming.png') }}" alt="Gaming!"/>
-            </div></a>
-        <nav class="navbar">
-            <ul>
-                <li>Announcements</li>
-                <li><a href = {{ path('app_show') }}>Posts</a></li>
-                <li><a href = {{ path('app_video') }}>Videos</a></li>
-                <li><a href="{{ path('app_contact') }}">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <link href="{{ asset('bootstrap.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('style.css') }}" rel="stylesheet"/>
+    <nav class="navbar">
+        <div class="logo-login">
+            <div class="logo">
+                <a href ={{ path('app_website') }}><h1>Fast Rocket</h1></a>
+            </div>
+            <div class="log">
+                {% if is_granted('ROLE_USER') %}
+                    <a href="{{ path('app_logout') }}">Log out</a>&nbsp;&nbsp;&nbsp;
+                {% else %}
+                    <a href="{{ path('app_login') }}">Log in</a>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('app_admin') }}">Admin panel</a>
+                {% endif %}
+            </div>
+        </div>
+        <ul>
+            <li><a href="{{ path('app_show_ann') }}">Announcements</a></li>
+            <li><a href="{{ path('app_show') }}">Posts</a></li>
+            <li><a href="{{ path('app_video') }}">Videos</a></li>
+            <li><a href="{{ path('app_contact') }}">Contact</a></li>
+        </ul>
+    </nav>
     <footer>
         <h2>Posts</h2>
         <div class= "container">
-
-        {% for art in article %}
+            {% for art in article %}
                 <div class = "row mt-4">
-                    <div class="col">
-                        <article>
-                            <h3><a href="{{ path('app_show_content', {"id" : art.id}) }}">{{ art.title }}</a></h3>
-                            {{ art.author }}
-                        </article>
-                    </div>
-                    <div class="col">
-                        {% if art.media != null %}
-                            <img src="{{ art.media }}">
-                        {% endif %}
+                    <div class="element">
+                        <div class="col">
+                            <article>
+                                <h3><a href="{{ path('app_show_content', {"id" : art.id}) }}">{{ art.title }}</a></h3>
+                                <p>{{ art.author }}</p>
+                            </article>
+                        </div>
+                        <div class="col">
+                            {% if art.media != null %}
+                                <img src="{{ art.media }}" style="width:20%" alt="">
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
-        {% endfor %}
-            {% if is_granted('ROLE_USER') %}
-                    <a href="{{ path('app_create') }}">Create a post !</a>
-            {% else %}
-                    <a href="{{ path('app_login') }}">Create a post !</a>
-            {% endif %}
+            {% endfor %}
+        </div>
+        {% if is_granted('ROLE_USER') %}
+            <a href="{{ path('app_create') }}">Create a post !</a>
+        {% else %}
+            <a href="{{ path('app_login') }}">Create a post !</a>
+        {% endif %}
     </footer>
 {% endblock %}

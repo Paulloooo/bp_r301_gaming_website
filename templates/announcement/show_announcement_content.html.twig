@@ -5,6 +5,8 @@
 {% block body %}
     <link href="{{ asset('bootstrap.css') }}" rel="stylesheet"/>
     <link href="{{ asset('style.css') }}" rel="stylesheet"/>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
     <nav class="navbar">
         <div class="logo-login">
             <div class="logo">
@@ -29,8 +31,19 @@
         </ul>
     </nav>
     <footer>
-        <div class="container">
-            <h3>Post created ! You can go to <a href="{{ path('app_show') }}">posts</a> section to see it !</h3>
+        <div class= "container">
+            <h2>{{ announcement.title }}</h2>
+            {{ announcement.content }}
+            <div class="container-fluid d-flex justify-content-center">
+                {% if announcement.media != null and announcement.media != "Image" %}
+                    <img src="{{ announcement.media }}" class="img-thumbnail" style="width:20%" alt=""/>
+                {% endif %}
+            </div>
+           {{ announcement.date|date("m/d/Y") }}
+            <div class="share">
+                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Share this annoucement!</a></br>
+                <div class="fb-share-button" data-href="http://r301.biarneix.com/index.php/show/{{ announcement.id }}" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fr301.biarneix.com%2Findex.php%2Fshow%2F%257B%257B+article.id+%257D%257D&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share on facebook</a></div>
+            </div>
         </div>
     </footer>
 {% endblock %}

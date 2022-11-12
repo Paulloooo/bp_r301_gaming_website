@@ -45,14 +45,6 @@ class ContactController extends AbstractController
             // actually executes the queries (i.e. the INSERT query)
             $entityManager->flush();
 
-            $email = (new Email())
-                ->from('hello@example.com')
-                ->to('you@example.com')
-                ->subject('Message sent!')
-                ->text('Your request has been sent to developer ! ')
-                ->html('<p>Vous avez envoyé ce message avec succès ! Il sera lu très prochainement.</p>');
-
-            $mailer->send($email);
 
             return $this->render('contact/contact_confirmation.html.twig', [
                 'controller_name' => 'ContactController',

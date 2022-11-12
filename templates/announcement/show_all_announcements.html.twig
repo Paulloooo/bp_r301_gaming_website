@@ -29,8 +29,22 @@
         </ul>
     </nav>
     <footer>
-        <div class="container">
-            <h3>Post created ! You can go to <a href="{{ path('app_show') }}">posts</a> section to see it !</h3>
+        <h2>Posts</h2>
+        <div class= "container">
+            {% for ann in announcements %}
+                <div class = "row mt-4">
+                    <div class="element">
+                            <article>
+                                <h3>📣<a href="{{ path('app_show_ann_content', {"id" : ann.id}) }}">{{ ann.title }}</a></h3>
+                            </article>
+                        </div>
+                </div>
+            {% endfor %}
         </div>
+        {% if is_granted('ROLE_USER') %}
+            <a href="{{ path('app_create') }}">Create a post !</a>
+        {% else %}
+            <a href="{{ path('app_login') }}">Create a post !</a>
+        {% endif %}
     </footer>
 {% endblock %}

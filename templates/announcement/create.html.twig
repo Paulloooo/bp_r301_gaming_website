@@ -1,7 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Gaming website{% endblock %}
-
 {% block body %}
     <link href="{{ asset('bootstrap.css') }}" rel="stylesheet"/>
     <link href="{{ asset('style.css') }}" rel="stylesheet"/>
@@ -30,7 +28,19 @@
     </nav>
     <footer>
         <div class="container">
-            <h3>Post created ! You can go to <a href="{{ path('app_show') }}">posts</a> section to see it !</h3>
+            <h2>Create an announcement</h2>
+            <form method="post" class="create_article">
+                <label>
+                    <input type="text" name="title" value="Title of announcement">
+                </label>
+                <label>
+                    <textarea name="content"></textarea>
+                </label>
+                <label>
+                    <input type="text" name="link" value="Image">
+                </label>
+                <button type="submit" name="Publish" id="publication">Publish !</button>
+            </form>
         </div>
     </footer>
 {% endblock %}

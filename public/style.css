@@ -3,37 +3,60 @@ header{
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    background-image: url("imges/header_bg.jpg");
+
 }
-header img{
-    width: 50px;
-    height: 50px;
+
+footer{
+    margin : 20px 100px 20px 100px;
 }
-header h1{
+
+
+nav{
+    width:100%;
+    position : fixed;
+    background-image: url("imges/header_bg.jpg");
+    cursor: pointer;
+}
+
+nav .logo-login *{
+    color : #edeef1;
+    text-decoration : none;
+    display : inline-block;
     align-content: center;
-
 }
 
-.title{
-    display:flex;
-    align-items: center;
-
-}
-.log{
-    display: flex;
-    justify-content: space-between;
+nav .logo{
+    margin-left: 100px;
+    padding-right: 10px;
 }
 
-.navbar{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+nav a:hover{
+    color: #0a53be;
 }
 
-.navbar li{
-    display:inline-block;
-    list-style: none;
+nav ul{
+    padding-left : 15px;
+    margin-right: 100px;
 }
 
+nav li{
+    display : inline-block;
+    list-style : none;
+    margin-left: 50px;
+}
+
+nav li a{
+    font-size: 20px;
+    text-transform : uppercase;
+    color : #d1d2d4;
+    text-decoration : none;
+}
+
+button,input,textarea{
+    background-color:black;
+    margin-bottom: 15px;
+}
 
 .create_article{
     text-align: center;
@@ -52,9 +75,6 @@ header h1{
     flex-direction: column;
 }
 
-img{
-    width:50%;
-}
 
 .carousel-item{
     height: 200px;
@@ -62,6 +82,38 @@ img{
 .carousel-item img{
     height: 200px;
 }
+
+.element{
+    background-color: #6c757d;
+    display:  inline-block;
+}
+
+.element h3{
+    display:  inline-block;
+}
+
+.element p{
+    display: list-item;
+}
+
+.element img{
+    display:  inline-block;
+    float:right
+}
+
+.share{
+    margin-top: 10px;
+}
+
+.index-titles{
+    text-align: center;
+    margin-top: 15px;
+}
+
 body{
-    background-color: #C0C1C2;
+    background-color: #3d3d3d;
+}
+
+body *{
+    color : #edeef1
 }

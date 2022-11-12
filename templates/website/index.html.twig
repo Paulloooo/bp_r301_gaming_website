@@ -1,39 +1,38 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <link href="{{ asset('style.css') }}" rel="stylesheet"/>
     <link href="{{ asset('bootstrap.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('style.css') }}" rel="stylesheet"/>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <header>
-        <div class="log">
-            {% if is_granted('ROLE_USER') %}
-                <a href="{{ path('app_logout') }}">Log out</a>
+    <nav class="navbar">
+        <div class="logo-login">
+            <div class="logo">
+                <a href ={{ path('app_website') }}><h1>Fast Rocket</h1></a>
+            </div>
+            <div class="log">
+                {% if is_granted('ROLE_USER') %}
+                    <a href="{{ path('app_logout') }}">Log out</a>&nbsp;&nbsp;&nbsp;
                 {% else %}
                     <a href="{{ path('app_login') }}">Log in</a>
-            {% endif %}
-            {% if is_granted('ROLE_ADMIN') %}
-                <a href="{{ path('app_admin') }}">Admin panel</a>
-            {% endif %}
-
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('app_admin') }}">Admin panel</a>
+                {% endif %}
+            </div>
         </div>
-        <a href ={{ path('app_website') }}> <div class = "title">
-            <h1>Fast Rocket</h1>
-            </div></a>
-        <nav class="navbar">
-            <ul>
-                <li>Annoucements</li>
-                <li><a href="{{ path('app_show') }}">Posts</a></li>
-                <li><a href="{{ path('app_video') }}">Videos</a></li>
-                <li><a href="{{ path('app_contact') }}">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+        <ul>
+            <li><a href="{{ path('app_show_ann') }}">Announcements</a></li>
+            <li><a href="{{ path('app_show') }}">Posts</a></li>
+            <li><a href="{{ path('app_video') }}">Videos</a></li>
+            <li><a href="{{ path('app_contact') }}">Contact</a></li>
+        </ul>
+    </nav>
     <footer>
-        <h3>Most recent articles : </h3>
+        <h3 class="index-titles">Most recent articles</h3>
         <div class="container d-flex justify-content-center">
-            <div id="carousel" class="carousel slide " data-bs-ride="carousel" style="width:60%">
+            <div id="carousel" class="carousel slide " data-bs-ride="carousel" style="width:60%; height:60%">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img class="d-block w-100" src="{{ images[0].media }}"  alt/>
@@ -55,5 +54,6 @@
                 </a>
             </div>
         </div>
+        <h3 class="index-titles">Top of the week</h3>
     </footer>
 {% endblock %}
