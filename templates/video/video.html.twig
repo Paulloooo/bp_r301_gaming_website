@@ -12,39 +12,40 @@
             <a href="{{ path('app_login') }}">Log in</a>
         {% endif %}
         <a href ={{ path('app_website') }}> <div class = "title">
-                <h1>Random gaming website</h1>
-                <img id="logo" src="{{ asset('gaming.png') }}" alt="Gaming!"/>
+                <h1>Fast Rocket</h1>
             </div></a>
         <nav class="navbar">
             <ul>
                 <li>Annoucements</li>
                 <li><a href="{{ path('app_show') }}">Posts</a></li>
                 <li><a href="{{ path('app_video') }}">Videos</a></li>
-                <li>Contact</li>
+                <li><a href="{{ path('app_contact') }}">Contact</a></li>
             </ul>
         </nav>
     </header>
     <footer>
         <div class="container">
-            {% for vid in video %}
-                <div class="m-2">
-                    <iframe width="560" height="315" src="{{ vid.link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </br>
-                   {% if is_granted('ROLE_USER') %}
-                       <form action="{{ path('app_like', {id: vid.id}) }}" method="POST">
-                           <button type="submit">Like</button>
-                       </form>
-                    {% else %}
-                        Connect or create account to like !
-                    {% endif %}
-                    {% if vid.nbLikes == null %}
-                        0 &#x1F44D;
-                    {% else %}
-                        {{ vid.nbLikes }} &#x1F44D;
-                    {% endif %}
-                    Title : {{ vid.title }}
-                </div>
-            {% endfor %}
+            <div class="row">
+                {% for vid in video %}
+                    <div class="col">
+                        <iframe width="560" height="315" src="{{ vid.link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </br>
+                       {% if is_granted('ROLE_USER') %}
+                           <form action="{{ path('app_like', {id: vid.id}) }}" method="POST">
+                               <button type="submit">Like</button>
+                           </form>
+                        {% else %}
+                            Connect or create account to like !
+                        {% endif %}
+                        {% if vid.nbLikes == null %}
+                            0 &#x1F44D;
+                        {% else %}
+                            {{ vid.nbLikes }} &#x1F44D;
+                        {% endif %}
+                        Title : {{ vid.title }}
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </footer>
 {% endblock %}

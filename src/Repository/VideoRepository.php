@@ -67,32 +67,7 @@ class VideoRepository extends ServiceEntityRepository
         return $query->getResult();
 
     }
-    public function addLikeToVid(int $idVid)
-    {
-        $entityManager = $this->getEntityManager();
 
-        $query = $entityManager->createQuery(
-            'SELECT v.nb_likes
-            FROM App\Entity\Video v
-            WHERE v.id=:idVid
-'
-        )->setParameter('idVid',$idVid);
-        $nb_likes_vid = $query->getResult();
-
-        if($nb_likes_vid = null){
-            $new_nb_likes_vid = 1;
-
-        }else{
-            $new_nb_likes_vid = $nb_likes_vid+1;
-        }
-
-        $query = $entityManager->createQuery(
-            'UPDATE App\Entity\Video v
-            SET nb_likes = :new_nb_likes_vid
-            WHERE v.id=:idVid
-'
-        )->setParameter('idVid',$idVid)->setParameter('new_nb_likes',$new_nb_likes_vid);
-    }
 
 
 //    /**

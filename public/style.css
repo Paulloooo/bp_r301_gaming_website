@@ -1,8 +1,6 @@
 header{
     display:flex;
     align-items: center;
-    background-color: #767170;
-    font-family: "Microsoft JhengHei Light";
     justify-content: space-between;
     flex-wrap: wrap;
 }
@@ -58,7 +56,12 @@ img{
     width:50%;
 }
 
-
+.carousel-item{
+    height: 200px;
+}
+.carousel-item img{
+    height: 200px;
+}
 body{
-    background-color:#BAB5B4
+    background-color: #C0C1C2;
 }

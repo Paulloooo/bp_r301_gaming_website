@@ -5,6 +5,7 @@
 {% block body %}
     <link href="{{ asset('style.css') }}" rel="stylesheet"/>
     <link href="{{ asset('bootstrap.css') }}" rel="stylesheet"/>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
     <header>
         {% if is_granted('ROLE_USER') %}
@@ -13,7 +14,7 @@
             <a href="{{ path('app_login') }}">Log in</a>
         {% endif %}
         <a href ={{ path('app_website') }}> <div class = "title">
-                <h1>Random gaming website</h1>
+                <h1>Fast Rocket</h1>
                 <img id="logo" src="{{ asset('gaming.png') }}" alt="Gaming!"/>
             </div></a>
         <nav class="navbar">
@@ -21,21 +22,24 @@
                 <li>Announcements</li>
                 <li><a href = {{ path('app_show') }}>Posts</a></li>
                 <li><a href = {{ path('app_video') }}>Videos</a></li>
-                <li>Contact</li>
+                <li><a href="{{ path('app_contact') }}">Contact</a></li>
             </ul>
         </nav>
     </header>
     <footer>
         <div class= "container">
-            <div class="row">
-                <h2>{{ article.title }}</h2>
-                {{ article.content }}
+            <h2>{{ article.title }}</h2>
+            {{ article.content }}
+            <div class="container-fluid d-flex justify-content-center">
                 {% if article.media != null %}
-                    <img src="{{ article.media }}">
+                    <img src="{{ article.media }}" class="img-thumbnail" style="width:20%" alt=""/>
                 {% endif %}
-                {{ article.author }}
             </div>
+        </br>
+            {{ article.author }}
+            </br>
+            <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Share this article !</a></br>
+        <div class="fb-share-button" data-href="http://r301.biarneix.com/index.php/show/{{ article.id }}" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fr301.biarneix.com%2Findex.php%2Fshow%2F%257B%257B+article.id+%257D%257D&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share on facebook</a></div>
         </div>
     </footer>
-    </div>
 {% endblock %}

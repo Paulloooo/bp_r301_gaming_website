@@ -25,11 +25,4 @@ class WebsiteController extends AbstractController
             ['images' => $images]);
     }
 
-    #[Route('/contact', name: 'app_contact')]
-    public function contact(ManagerRegistry $doctrine): Response
-    {
-
-        return $this->render('website/contact.html.twig');
-    }
-
 }
