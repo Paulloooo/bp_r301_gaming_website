@@ -41,18 +41,24 @@
                     <div class="col">
                         <iframe width="560" height="315" src="{{ vid.link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </br>
-                       {% if is_granted('ROLE_USER') %}
-                           <form action="{{ path('app_like', {id: vid.id}) }}" method="POST">
-                               <button type="submit">Like</button>
-                           </form>
-                        {% else %}
-                            Connect or create account to like !
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <form action="{{ path('app_delete', {id: vid.id}) }}" method="POST">
+                                <button type="submit">DELETE</button>
+                            </form>
                         {% endif %}
                         {% if vid.nbLikes == null %}
                             0 &#x1F44D;
                         {% else %}
                             {{ vid.nbLikes }} &#x1F44D;
                         {% endif %}
+                        {% if is_granted('ROLE_USER') %}
+                            <form action="{{ path('app_like', {id: vid.id}) }}" method="POST">
+                                <button type="submit">Like</button>
+                            </form>
+                        {% else %}
+                            Connect or create account to like !
+                        {% endif %}
+
                         Title : {{ vid.title }}
                     </div>
                 {% endfor %}

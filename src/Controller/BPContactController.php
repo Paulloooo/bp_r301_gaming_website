@@ -14,7 +14,7 @@ use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 
-class ContactController extends AbstractController
+class BPContactController extends AbstractController
 {
     public function __construct(Security $security)
     {

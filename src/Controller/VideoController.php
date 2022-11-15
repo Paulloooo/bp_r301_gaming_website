@@ -44,6 +44,29 @@ class VideoController extends AbstractController
 
     }
 
+    #[Route('/video', name: 'app_delete', methods : ['POST'])]
+    public function delete(Video $videoToDelete, Request $request, ManagerRegistry $doctrine) : Response
+    {
+        $video = $doctrine->getRepository(Video::class)->displayAllVideos();
+
+        if ($request->isMethod('POST')&&$this->isGranted('ROLE_ADMIN')) {
+            $entityManager = $doctrine->getManager();
+
+
+            $doctrine->getRepository(Video::class)->deleteVideo($videoToDelete->getId());
+
+
+            $entityManager->flush();
+
+            return $this->render('video/video.html.twig',
+                ['video' => $video]
+            );
+        }
+        return $this->render('video/video.html.twig',
+            ['video' => $video]
+        );
+    }
+
     #[Route('/admin/create-video', name: 'app_create_vid')]
     public function create(Request $request, ManagerRegistry $doctrine): Response
     {

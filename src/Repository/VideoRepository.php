@@ -89,8 +89,20 @@ class VideoRepository extends ServiceEntityRepository
 
     }
 
+    public function deleteVideo(int $idVideo)
+    {
+        $entityManager = $this->getEntityManager();
 
+        $query = $entityManager->createQuery(
+            'DELETE
+            FROM App\Entity\Video v
+            WHERE v.id = :id
+            '
+        )->setParameter('id',$idVideo);
 
+        $query->getResult();
+
+    }
 
 
 //    /**
