@@ -29,6 +29,12 @@
         </ul>
     </nav>
     <footer>
+        <div class = "categories-vid">
+            <h5>Categories :</h5>
+            <a href="{{ path('app_video') }}">All</a>
+            <a href="{{ path('app_show_vid_category', {category: "yt"}) }}">YT videos</a>
+            <a href="{{ path('app_show_vid_category', {category: "wr"}) }}">World Records</a>
+        </div>
         <div class="container">
             <div class="row">
                 {% for vid in video %}

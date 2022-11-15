@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Entity\Video;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,8 +14,8 @@ class WebsiteController extends AbstractController
     #[Route('/', name: 'app_website')]
     public function index(ManagerRegistry $doctrine): Response
     {
-        $images = $doctrine->getRepository(Post::class)->displayAllImages();
-
+        $images = $doctrine->getRepository(Post::class)->displayAllArticles();
+        $video = $doctrine->getRepository(Video::class)->displayAllVideosNbLikes();
         if (!$images) {
             throw $this->createNotFoundException(
                 'No image found'
@@ -22,7 +23,8 @@ class WebsiteController extends AbstractController
         }
 
         return $this->render('website/index.html.twig',
-            ['images' => $images]);
+            ['images' => $images, 'video' => $video]
+        );
     }
 
 }

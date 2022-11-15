@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Announcement;
 use App\Entity\Video;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -40,6 +41,53 @@ class VideoController extends AbstractController
         }
         $entityManager->flush();
         return $this->redirectToRoute('app_video');
+
+    }
+
+    #[Route('/admin/create-video', name: 'app_create_vid')]
+    public function create(Request $request, ManagerRegistry $doctrine): Response
+    {
+
+        if ($request->isMethod('POST')) {
+            $entityManager = $doctrine->getManager();
+
+            $title = $request->get('title');
+            $link = $request->get('link');
+            $category = $request->get('category');
+
+            $link = $doctrine->getRepository(Video::class)->setLinkForYtVideo($link);
+
+            $video = new Video();
+            $video ->setTitle($title);
+            $video -> setLink($link);
+            $video -> setCategory($category);
+
+            $entityManager->persist($video);
+
+            // actually executes the queries (i.e. the INSERT query)
+            $entityManager->flush();
+
+            return $this->render('video/video_published.html.twig', [
+                'controller_name' => 'VideoController',
+            ]);
+
+        }
+        return $this->render('video/create.html.twig', [
+            'controller_name' => 'AnnouncementController',
+        ]);
+
+    }
+
+    #[Route('/video/{category}', name: 'app_show_vid_category')]
+    public function showCategory(Request $request, ManagerRegistry $doctrine): Response
+    {
+
+        $category = $request->get('category');
+        $video = $doctrine->getRepository(Video::class)->displayAllVideosByCategory($category);
+
+        return $this->render('video/video.html.twig',
+            ['video' => $video]
+        );
 
     }
 }

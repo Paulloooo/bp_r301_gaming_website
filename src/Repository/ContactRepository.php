@@ -5,6 +5,9 @@ namespace App\Repository;
 use App\Entity\Contact;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 /**
  * @extends ServiceEntityRepository<Contact>
@@ -50,6 +53,15 @@ class ContactRepository extends ServiceEntityRepository
         );
 
         return $query->getResult();
+    }
+
+    public function sendEmail(MailerInterface $mailer, string $message){
+        $email = (new Email())
+            ->from('aliasttlesjeux@gmail.com')
+            ->to('paul.biarneix@gmail.com')
+            ->text('We receive your comment')
+            ->html('<html lang="en"><body>'.$message.'</body></html>');
+            $mailer->send($email);
     }
 
 

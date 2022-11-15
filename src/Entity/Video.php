@@ -22,6 +22,9 @@ class Video
     #[ORM\Column(nullable: true)]
     private ?int $nb_likes = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $category = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,18 @@ class Video
     public function setNbLikes(?int $nb_likes): self
     {
         $this->nb_likes = $nb_likes;
+
+        return $this;
+    }
+
+    public function getCategory(): ?string
+    {
+        return $this->category;
+    }
+
+    public function setCategory(string $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

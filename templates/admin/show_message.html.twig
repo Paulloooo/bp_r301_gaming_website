@@ -37,12 +37,14 @@
             </br>
             {{ messages.emailUser }}
             </br>
-            <form method="post">
-            <label>
-                <textarea name="message"></textarea>
-            </label>
+            <a href = "mailto: {{ messages.emailUser }}">Send Email ! </a>
             </br>
-            <button type="submit" name="Publish" id="publication">Answer</button>
+            <form method="post">
+                <label>
+                    <textarea name="message"></textarea>
+                </label>
+                </br>
+                <button type="submit" name="Publish" id="publication">Answer</button>
             </form>
             <a href ={{ path('app_website') }}><h5>Retour au menu</h5></a>
          </div>

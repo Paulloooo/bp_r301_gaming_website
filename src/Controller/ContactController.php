@@ -42,9 +42,7 @@ class ContactController extends AbstractController
 
             $entityManager->persist($contact);
 
-            // actually executes the queries (i.e. the INSERT query)
             $entityManager->flush();
-
 
             return $this->render('contact/contact_confirmation.html.twig', [
                 'controller_name' => 'ContactController',

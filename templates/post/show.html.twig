@@ -30,6 +30,11 @@
     </nav>
     <footer>
         <h2>Posts</h2>
+        {% if is_granted('ROLE_USER') %}
+            <a href="{{ path('app_create') }}">Create a post !</a>
+        {% else %}
+            <a href="{{ path('app_login') }}">Create a post !</a>
+        {% endif %}
         <div class= "container">
             {% for art in article %}
                 <div class = "row mt-4">
@@ -49,10 +54,5 @@
                 </div>
             {% endfor %}
         </div>
-        {% if is_granted('ROLE_USER') %}
-            <a href="{{ path('app_create') }}">Create a post !</a>
-        {% else %}
-            <a href="{{ path('app_login') }}">Create a post !</a>
-        {% endif %}
     </footer>
 {% endblock %}

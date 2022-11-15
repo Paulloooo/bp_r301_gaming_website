@@ -52,21 +52,44 @@ class VideoRepository extends ServiceEntityRepository
         return $query->getResult();
 
     }
-
-    public function selectVidById(int $id): array
+    public function displayAllVideosNbLikes(): array
     {
         $entityManager = $this->getEntityManager();
 
         $query = $entityManager->createQuery(
             'SELECT v
             FROM App\Entity\Video v
-            WHERE v.id = :id
+            ORDER BY v.nb_likes DESC
             '
-        )->setParameter('id',$id);
+        );
 
         return $query->getResult();
 
     }
+
+    function setLinkForYtVideo(string $link) : string
+    {
+        $newLink = str_replace('watch?v=', 'embed/', $link);
+        return $newLink;
+    }
+
+    public function displayAllVideosByCategory(string $category): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT v
+            FROM App\Entity\Video v
+            WHERE v.category = :category
+            ORDER BY v.nb_likes DESC
+            '
+        )->setParameter('category',$category);
+
+        return $query->getResult();
+
+    }
+
+
 
 
 

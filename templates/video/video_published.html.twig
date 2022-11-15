@@ -1,7 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Gaming website{% endblock %}
-
 {% block body %}
     <link href="{{ asset('bootstrap.css') }}" rel="stylesheet"/>
     <link href="{{ asset('style.css') }}" rel="stylesheet"/>
@@ -29,17 +27,8 @@
         </ul>
     </nav>
     <footer>
-        <h2>Posts</h2>
-        <div class= "container">
-            {% for ann in announcements %}
-                <div class = "row mt-4">
-                    <div class="element">
-                            <article>
-                                <h3>📣<a href="{{ path('app_show_ann_content', {"id" : ann.id}) }}">{{ ann.title }}</a></h3>
-                            </article>
-                        </div>
-                </div>
-            {% endfor %}
+        <div class="container">
+            <h3>Video posted ! You can go to <a href="{{ path('app_video') }}">videos</a> section to see it !</h3>
         </div>
     </footer>
 {% endblock %}

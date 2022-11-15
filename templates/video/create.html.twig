@@ -29,17 +29,20 @@
         </ul>
     </nav>
     <footer>
-        <h2>Posts</h2>
-        <div class= "container">
-            {% for ann in announcements %}
-                <div class = "row mt-4">
-                    <div class="element">
-                            <article>
-                                <h3>📣<a href="{{ path('app_show_ann_content', {"id" : ann.id}) }}">{{ ann.title }}</a></h3>
-                            </article>
-                        </div>
-                </div>
-            {% endfor %}
+        <div class="container">
+            <h2>Put a video</h2>
+            <form method="post" class="create_article">
+                <label>
+                    <input type="text" name="title" value="Title of video">
+                </label>
+                <label>
+                    <input type="text" name="link" value="Link">
+                </label>
+                <label>
+                    <input type="text" name="category" value="Category">
+                </label>
+                <button type="submit" name="Publish" id="publication">Publish !</button>
+            </form>
         </div>
     </footer>
 {% endblock %}
