@@ -7,6 +7,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
@@ -27,18 +28,20 @@ class BPAuthController extends AbstractController
     }
 
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request,ManagerRegistry $doctrine) :Response
+    public function register(Request $request,ManagerRegistry $doctrine, UserPasswordHasherInterface $passwordHasher) :Response
     {
         if($request->isMethod('POST')) {
             $entityManager = $doctrine->getManager();
+            $user = new User();
 
             $email = $request->get('mail');
             $username = $request->get('username');
             $password = $request->get('password');
 
-            $user = new User();
+            $hashedPassword = $passwordHasher->hashPassword($user,$password);
+
             $user->setEmail($email);
-            $user->setPassword($password);
+            $user->setPassword($hashedPassword);
             $user->setUsername($username);
 
 
